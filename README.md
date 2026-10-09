@@ -16,10 +16,7 @@ It is a static site: open `index.html`, or serve the folder from any web host.
 
 1. In this repository, open **Settings → Pages**.
 2. Under **Build and deployment**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`, and save.
-3. The site appears at `https://joshbog.github.io/wedding_invite/` within a minute or two.
-
-To use your own domain, enter it under **Custom domain** on the same page and follow the DNS instructions GitHub shows.
-When the final address is known, change `og:image` in `index.html` to the full address of `og.jpg` so link previews show the picture.
+3. The custom domain is set by the `CNAME` file: the site is served at https://26eleven.com once the domain's DNS points to GitHub Pages.
 
 ## Sound credits
 
