@@ -188,6 +188,12 @@ dl{margin:0}
 .sk{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 .sk-soft{opacity:.6}
 .book .no,.book .ti,.book .su{position:relative}
+.book .cta{position:relative;margin-top:.9em;padding:.85em 1.3em;border:1px solid var(--on-wine-soft);color:var(--on-wine);
+  font:500 clamp(.58rem,5.2cqi,.92rem)/1 var(--body);letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;
+  transition:background-color .3s ease,color .3s ease,border-color .3s ease}
+.book .cta::after{content:"";display:inline-block;width:.42em;height:.42em;margin-left:.7em;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;rotate:-45deg;translate:0 -.08em}
+.book:hover .cta,.book:focus-visible .cta,.book.hinting .cta{background:var(--on-wine);color:var(--wine);border-color:var(--on-wine)}
+.book[aria-expanded="true"] .cta::after{rotate:45deg;translate:0 -.25em}
 .book .no{font:500 clamp(.5rem,5.2cqi,1rem)/1.3 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--on-wine-soft)}
 .book .ti{font:400 clamp(.9rem,12.6cqi,2.7rem)/1.14 var(--display);text-wrap:balance}
 .book .su{font:italic 400 clamp(.66rem,7.6cqi,1.55rem)/1.3 var(--display);color:var(--on-wine-soft)}
@@ -197,7 +203,7 @@ dl{margin:0}
 @media (hover:hover){.book:hover{translate:0 -9px;rotate:-1.2deg}}
 
 /* A hand taps each book in turn, and the cover it taps lifts a little, until a guest opens one. */
-.tap{position:absolute;z-index:2;left:52%;top:71%;width:clamp(28px,23cqi,86px);pointer-events:none;rotate:-16deg;
+.tap{position:absolute;z-index:2;left:58%;top:38%;width:clamp(28px,23cqi,86px);pointer-events:none;rotate:-16deg;
   filter:drop-shadow(0 4px 5px var(--shadow));animation:tap-hand 2.4s cubic-bezier(.4,0,.2,1) infinite}
 .tap svg{display:block;width:100%;height:auto;overflow:visible}
 .tap-hand{fill:var(--banner);stroke:var(--wine-deep);stroke-width:2.2;stroke-linejoin:round}
@@ -766,16 +772,15 @@ footer{background:var(--paper-2)}
       <div class="shelf" id="shelf">
         <button class="book hinting" type="button" aria-expanded="false" aria-controls="book-1">
           <span class="leaf"></span>
-          <span class="cover"><svg class="sketch" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><svg class="sketch top" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><span class="no">Book One</span><span class="ti">Traditional Wedding</span><span class="su">the ceremony</span></span>
-          <span class="tap" id="tap" aria-hidden="true"><svg viewBox="0 0 64 72" focusable="false"><path class="tap-hand" d="M26 40V12a5 5 0 0 1 10 0v18l12.5 2.6a5.5 5.5 0 0 1 4.3 6l-1.7 15a9 9 0 0 1-9 8H31a9 9 0 0 1-6.6-2.9L11.6 45.5a3.9 3.9 0 0 1 5.6-5.4L26 46Z"/><path class="tap-line" d="M41.5 32v6M47 33.2v5.6"/></svg></span>
+          <span class="cover"><svg class="sketch" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><svg class="sketch top" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><span class="no">Book One</span><span class="ti">Traditional Wedding</span><span class="su">the ceremony</span><span class="cta"><span class="cta-t">View Program</span><span class="tap" id="tap" aria-hidden="true"><svg viewBox="0 0 64 72" focusable="false"><path class="tap-hand" d="M26 40V12a5 5 0 0 1 10 0v18l12.5 2.6a5.5 5.5 0 0 1 4.3 6l-1.7 15a9 9 0 0 1-9 8H31a9 9 0 0 1-6.6-2.9L11.6 45.5a3.9 3.9 0 0 1 5.6-5.4L26 46Z"/><path class="tap-line" d="M41.5 32v6M47 33.2v5.6"/></svg></span></span></span>
         </button>
         <button class="book" type="button" aria-expanded="false" aria-controls="book-2">
           <span class="leaf"></span>
-          <span class="cover"><svg class="sketch" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><svg class="sketch top" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><span class="no">Book Two</span><span class="ti">Reception</span><span class="su">the celebration</span></span>
+          <span class="cover"><svg class="sketch" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><svg class="sketch top" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><span class="no">Book Two</span><span class="ti">Reception</span><span class="su">the celebration</span><span class="cta"><span class="cta-t">View Program</span></span></span>
         </button>
         <button class="book" type="button" aria-expanded="false" aria-controls="book-3">
           <span class="leaf"></span>
-          <span class="cover"><svg class="sketch" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><svg class="sketch top" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><span class="no">Book Three</span><span class="ti">After Party</span><span class="su">till Mama calls</span></span>
+          <span class="cover"><svg class="sketch" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><svg class="sketch top" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#bloom"/></svg><span class="no">Book Three</span><span class="ti">After Party</span><span class="su">till Mama calls</span><span class="cta"><span class="cta-t">View Program</span></span></span>
         </button>
       </div>
       <div class="spread" id="book-1" role="region" aria-label="Book One: Traditional Wedding">
@@ -1047,7 +1052,7 @@ footer{background:var(--paper-2)}
       if (document.hidden) return;
       books[turn].classList.remove('hinting');
       turn = (turn + 1) % books.length;
-      books[turn].appendChild(tap);                 // re-inserting restarts the tap, in step with the cover
+      books[turn].querySelector('.cta').appendChild(tap);   // re-inserting restarts the tap, in step with the cover
       books[turn].classList.add('hinting');
     }, 2400);
     books.forEach(function(b){
@@ -1056,6 +1061,7 @@ footer{background:var(--paper-2)}
         var wasOpen = b.getAttribute('aria-expanded') === 'true';
         var before = books.map(function(o){ return o.getBoundingClientRect(); });
         books.forEach(function(o){
+          o.querySelector('.cta-t').textContent = 'View Program';
           o.setAttribute('aria-expanded', 'false');
           document.getElementById(o.getAttribute('aria-controls')).classList.remove('open');
         });
@@ -1064,6 +1070,7 @@ footer{background:var(--paper-2)}
         var pages = null;
         if (!wasOpen) {
           b.setAttribute('aria-expanded', 'true');
+          b.querySelector('.cta-t').textContent = 'Close Program';
           pages = document.getElementById(b.getAttribute('aria-controls'));
           pages.classList.add('open');
         }
