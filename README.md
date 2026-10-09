@@ -16,7 +16,7 @@ It is a static site: open `index.html`, or serve the folder from any web host.
 
 1. In this repository, open **Settings → Pages**.
 2. Under **Build and deployment**, choose **Deploy from a branch**, branch `main`, folder `/ (root)`, and save.
-3. The custom domain is set by the `CNAME` file: the site is served at https://26eleven.com once the domain's DNS points to GitHub Pages.
+3. The custom domain is set by the `CNAME` file: the site is served at https://www.26eleven.com, with 26eleven.com redirecting to it.
 
 ## Sound credits
 
