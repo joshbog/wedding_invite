@@ -1055,6 +1055,36 @@ footer{background:var(--paper-2)}
       books[turn].querySelector('.cta').appendChild(tap);   // re-inserting restarts the tap, in step with the cover
       books[turn].classList.add('hinting');
     }, 2400);
+    // A page-turn sound when a book opens: paper sliding, a soft swish and a light flap, with a little crinkle.
+    var flipCtx = null, flipNoise = null;
+    function pageTurn(){
+      var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      try {
+        if (!flipCtx) {
+          flipCtx = new AC();
+          var len = Math.floor(flipCtx.sampleRate * .6);
+          flipNoise = flipCtx.createBuffer(1, len, flipCtx.sampleRate);
+          var ch = flipNoise.getChannelData(0);
+          for (var i = 0; i < len; i++) ch[i] = Math.random() * 2 - 1;
+        }
+        var c = flipCtx; if (c.state === 'suspended' && c.resume) c.resume();
+        var t = c.currentTime + .02, out = c.createGain(); out.gain.value = .55; out.connect(c.destination);
+        function burst(at, dur, type, f0, f1, q, peak, attack){
+          var s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+          s.buffer = flipNoise; f.type = type; f.Q.value = q;
+          f.frequency.setValueAtTime(f0, at); f.frequency.exponentialRampToValueAtTime(f1, at + dur);
+          g.gain.setValueAtTime(.0001, at);
+          g.gain.exponentialRampToValueAtTime(peak, at + attack);
+          g.gain.exponentialRampToValueAtTime(.0001, at + dur);
+          s.connect(f); f.connect(g); g.connect(out);
+          s.start(at, Math.random() * .2); s.stop(at + dur + .02);
+        }
+        burst(t, .22, 'bandpass', 900, 2600, .7, .5, .12);            // the page lifting and sliding
+        burst(t + .14, .2, 'highpass', 2600, 1800, .5, .42, .05);      // the swish as it turns over
+        burst(t + .27, .07, 'lowpass', 520, 260, .8, .7, .006);        // the page landing
+        for (var k = 0; k < 9; k++) burst(t + Math.random() * .3, .006 + Math.random() * .01, 'bandpass', 4200 + Math.random() * 2000, 3800, 2, .12 + Math.random() * .12, .001);  // crinkle
+      } catch (e) {}
+    }
     books.forEach(function(b){
       b.addEventListener('click', function(){
         stopHint();
@@ -1071,6 +1101,7 @@ footer{background:var(--paper-2)}
         if (!wasOpen) {
           b.setAttribute('aria-expanded', 'true');
           b.querySelector('.cta-t').textContent = 'Close Program';
+          pageTurn();
           pages = document.getElementById(b.getAttribute('aria-controls'));
           pages.classList.add('open');
         }
